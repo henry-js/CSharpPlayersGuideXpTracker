@@ -9,16 +9,16 @@
 #
 #     - To trigger manual generation invoke:
 #
-#         nuke --generate-configuration GitHubActions_merge --host GitHubActions
+#         nuke --generate-configuration GitHubActions_compile-code --host GitHubActions
 #
 # </auto-generated>
 # ------------------------------------------------------------------------------
 
-name: merge
+name: compile-code
 
 on:
-  pull_request:
-    branches:
+  push:
+    branches-ignore:
       - main
 
 jobs:
@@ -36,5 +36,5 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
-      - name: 'Run: Test'
-        run: ./build.cmd Test
+      - name: 'Run: Compile'
+        run: ./build.cmd Compile

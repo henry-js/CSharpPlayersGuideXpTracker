@@ -18,14 +18,14 @@ using System.Linq;
 using Serilog;
 
 [GitHubActions(
-    "continuous",
+    "compile-code",
     GitHubActionsImage.UbuntuLatest,
     AutoGenerate = true,
     OnPushBranchesIgnore = ["main"],
     InvokedTargets = [nameof(Compile)],
     FetchDepth = 0)]
 [GitHubActions(
-        "merge",
+        "run-tests",
         GitHubActionsImage.UbuntuLatest,
         AutoGenerate = true,
         OnPullRequestBranches = ["main"],
