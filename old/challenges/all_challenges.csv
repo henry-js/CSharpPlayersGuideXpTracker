@@ -1,0 +1,112 @@
+Id,Name,Xp,Status,Chapter
+1,Knowledge Check - C#,25,NotStarted,1
+2,Install Visual Studio,75,NotStarted,1
+3,"Hello, World!",50,NotStarted,1
+4,What Comes Next,50,NotStarted,1
+5,The Makings of a Programmer,50,NotStarted,1
+6,Consolas and Telim,50,NotStarted,1
+7,The Thing Namer 3000,100,NotStarted,1
+8,Knowledge Check - Variables,25,NotStarted,1
+9,The Variable Shop,100,NotStarted,1
+10,The Variable Shop Returns,50,NotStarted,1
+11,Knowledge Check - Type System,25,NotStarted,1
+12,The Triangle Farmer,100,NotStarted,1
+13,The Four Sisters and the Duckbear,100,NotStarted,1
+14,The Dominion of Kings,100,NotStarted,1
+15,The Defense of Consolas,200,NotStarted,1
+16,Repairing the Clocktower,100,NotStarted,1
+17,Watchtower,100,NotStarted,1
+18,Buying Inventory,100,NotStarted,1
+19,Discounted Inventory,50,NotStarted,1
+20,The Prototype,100,NotStarted,1
+21,The Magic Cannon,100,NotStarted,1
+22,The Replicator of D' To,100,NotStarted,1
+23,The Laws of Freach,50,NotStarted,1
+24,Taking a Number,100,NotStarted,1
+25,Countdown,100,NotStarted,1
+26,Knowledge Check - Memory,25,NotStarted,1
+27,Hunting the Manticore,250,NotStarted,1
+28,Knowledge Check - Objects,25,NotStarted,2
+29,Simula's Test,100,NotStarted,2
+30,Simula's Soups,100,NotStarted,2
+31,Vin Fletcher's Arrows,100,NotStarted,2
+32,Vin's Trouble,50,NotStarted,2
+33,The Properties of Arrows,100,NotStarted,2
+34,Arrow Factories,100,NotStarted,2
+35,The Point,75,NotStarted,2
+36,The Color,100,NotStarted,2
+37,The Card,100,NotStarted,2
+38,The Locked Door,100,NotStarted,2
+39,The Password Validator,100,NotStarted,2
+40,Rock-Paper-Scissors,150,NotStarted,2
+41,15-Puzzle,150,NotStarted,2
+42,Hangman,150,NotStarted,2
+43,Tic-Tac-Toe,300,NotStarted,2
+44,Packing Inventory,150,NotStarted,2
+45,Labeling Inventory,50,NotStarted,2
+46,The Old Robot,200,NotStarted,2
+47,Robotic Interface,75,NotStarted,2
+48,Room Coordinates,50,NotStarted,2
+49,War Preparations,100,NotStarted,2
+50,Colored Items,100,NotStarted,2
+51,The Fountain of Objects,500,NotStarted,2
+52,"Small, Medium, or Large",100,NotStarted,2
+53,Pits,100,NotStarted,2
+54,Maelstroms,100,NotStarted,2
+55,Amaroks,100,NotStarted,2
+56,Getting Armed,100,NotStarted,2
+57,Getting Help,100,NotStarted,2
+58,The Robot Pilot,50,NotStarted,2
+59,Time in the Cavern,50,NotStarted,2
+60,Lists of Commands,75,NotStarted,2
+61,Knowledge Check - Large Programs,25,NotStarted,3
+62,The Feud,75,NotStarted,3
+63,Dueling Traditions,100,NotStarted,3
+64,Safer Number Crunching,50,NotStarted,3
+65,Knowledge Check - Methods,25,NotStarted,3
+66,Better Random,100,NotStarted,3
+67,Exepti's Game,100,NotStarted,3
+68,The Sieve,100,NotStarted,3
+69,Knowledge Check - Events,25,NotStarted,3
+70,Charberry Trees,100,NotStarted,3
+71,Knowledge Check - Lambdas,25,NotStarted,3
+72,The Lambda Sieve,50,NotStarted,3
+73,The Long Game,100,NotStarted,3
+74,The Potion Masters of Pattren,150,NotStarted,3
+75,Knowledge Check - Operators,25,NotStarted,3
+76,Navigating Operand City,100,NotStarted,3
+77,Indexing Operand City,75,NotStarted,3
+78,Converting Directions to Offsets,50,NotStarted,3
+79,Knowledge Check - Queries,25,NotStarted,3
+80,The Three Lenses,100,NotStarted,3
+81,The Repeating Stream,150,NotStarted,3
+82,Knowledge Check - Async,25,NotStarted,3
+83,Asynchronous Random Words,150,NotStarted,3
+84,Many Random Words,50,NotStarted,3
+85,Uniter of Adds,75,NotStarted,3
+86,The Robot Factory,100,NotStarted,3
+87,Knowledge Check - Unsafe Code,25,NotStarted,3
+88,Knowledge Check - Other Features,25,NotStarted,3
+89,Colored Console,100,NotStarted,3
+90,The Great Humanizer,100,NotStarted,3
+91,Knowledge Check - Compiling,25,NotStarted,3
+92,Knowledge Check - .NET,25,NotStarted,3
+93,Altar of Publication,100,NotStarted,3
+94,Core Game: Building Character,300,NotStarted,4
+95,Core Game: The True Programmer,100,NotStarted,4
+96,Core Game: Actions and Players,300,NotStarted,4
+97,Core Game: Attacks,200,NotStarted,4
+98,Core Game: Damage and HP,150,NotStarted,4
+99,Core Game: Death,150,NotStarted,4
+100,Core Game: Battle Series,150,NotStarted,4
+101,Core Game: The Uncoded One,100,NotStarted,4
+102,Core Game: The Player Decides,200,NotStarted,4
+103,Expansion: The Game's Status,100,NotStarted,4
+104,Expansion: Items,200,NotStarted,4
+105,Expansion: Gear,300,NotStarted,4
+106,Expansion: Stolen Inventory,200,NotStarted,4
+107,Expansion: Vin Fletcher,200,NotStarted,4
+108,Expansion: Attack Modifiers,200,NotStarted,4
+109,Expansion: Damage Types,200,NotStarted,4
+110,Expansion: Making it Yours,0,NotStarted,4
+111,Expansion: Restoring Balance,150,NotStarted,4
