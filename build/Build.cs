@@ -21,7 +21,7 @@ using Serilog;
     "compile-code",
     GitHubActionsImage.UbuntuLatest,
     AutoGenerate = true,
-    OnPushBranchesIgnore = ["main"],
+    OnPushBranches = ["**"],
     InvokedTargets = [nameof(Compile)],
     FetchDepth = 0)]
 [GitHubActions(

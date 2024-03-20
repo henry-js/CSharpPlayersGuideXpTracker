@@ -18,8 +18,8 @@ name: compile-code
 
 on:
   push:
-    branches-ignore:
-      - main
+    branches:
+      - '**'
 
 jobs:
   ubuntu-latest:
