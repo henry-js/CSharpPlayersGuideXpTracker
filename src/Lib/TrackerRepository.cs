@@ -10,41 +10,36 @@ namespace XpTracker.Lib;
 
 public class TrackerRepository : ITrackerRepository
 {
+    private readonly CsvConfiguration csvConfig = new(CultureInfo.InvariantCulture) { BadDataFound = null };
+    private readonly string _challengeFile;
 
-    private readonly CsvConfiguration csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture) { BadDataFound = null };
     public TrackerRepository()
     {
         var fileName = "all_challenges.csv";
-        if (Path.IsPathFullyQualified(fileName))
-            _challengeFile = fileName;
-        else
-            _challengeFile = Path.Combine(Directory.GetParent(Assembly.GetExecutingAssembly().Location)!.FullName, fileName);
+        _challengeFile = Path.Combine(Directory.GetParent(Assembly.GetExecutingAssembly().Location)!.FullName, "challenges", fileName);
     }
 
-    private readonly string _challengeFile;
-
-    public IEnumerable<ChallengeRecord> GetChallenges()
+    public IEnumerable<Challenge> GetChallenges()
     {
         using var reader = new StreamReader(_challengeFile);
         using var csv = new CsvReader(reader, csvConfig);
         csv.Context.RegisterClassMap<ChallengeMap>();
-        var records = csv.GetRecords<Challenge>().ToList();
-        return records.Select(x => x.ToRecord());
+        var records = csv.GetRecords<Challenge>().OrderBy(c => c.ChapterId.Chapter).ThenBy(c => c.ChapterId.Id);
+        return records.ToList();
     }
 
-    public void SaveChallenges(IEnumerable<ChallengeRecord> challengeRecords)
+    public void SaveChallenges(IEnumerable<Challenge> challengeRecords)
     {
+        var challenges = challengeRecords;
         using var writer = new StreamWriter(_challengeFile);
-        using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
-        var challenges = challengeRecords.Select(c => c.ToChallenge());
+        using var csv = new CsvWriter(writer, new CsvConfiguration(CultureInfo.InvariantCulture));
         csv.WriteRecords(challenges);
     }
 }
 
 public interface ITrackerRepository
 {
-    IEnumerable<ChallengeRecord> GetChallenges();
+    IEnumerable<Challenge> GetChallenges();
 
-    // void SaveChallenge(ChallengeRecord challenge);
-    void SaveChallenges(IEnumerable<ChallengeRecord> challenges);
+    void SaveChallenges(IEnumerable<Challenge> challenges);
 }

@@ -26,87 +26,87 @@ Id,Name,Xp,Status,Chapter
 25,Countdown,100,NotStarted,1
 26,Knowledge Check - Memory,25,NotStarted,1
 27,Hunting the Manticore,250,NotStarted,1
-28,Knowledge Check - Objects,25,NotStarted,2
-29,Simula's Test,100,NotStarted,2
-30,Simula's Soups,100,NotStarted,2
-31,Vin Fletcher's Arrows,100,NotStarted,2
-32,Vin's Trouble,50,NotStarted,2
-33,The Properties of Arrows,100,NotStarted,2
-34,Arrow Factories,100,NotStarted,2
-35,The Point,75,NotStarted,2
-36,The Color,100,NotStarted,2
-37,The Card,100,NotStarted,2
-38,The Locked Door,100,NotStarted,2
-39,The Password Validator,100,NotStarted,2
-40,Rock-Paper-Scissors,150,NotStarted,2
-41,15-Puzzle,150,NotStarted,2
-42,Hangman,150,NotStarted,2
-43,Tic-Tac-Toe,300,NotStarted,2
-44,Packing Inventory,150,NotStarted,2
-45,Labeling Inventory,50,NotStarted,2
-46,The Old Robot,200,NotStarted,2
-47,Robotic Interface,75,NotStarted,2
-48,Room Coordinates,50,NotStarted,2
-49,War Preparations,100,NotStarted,2
-50,Colored Items,100,NotStarted,2
-51,The Fountain of Objects,500,NotStarted,2
-52,"Small, Medium, or Large",100,NotStarted,2
-53,Pits,100,NotStarted,2
-54,Maelstroms,100,NotStarted,2
-55,Amaroks,100,NotStarted,2
-56,Getting Armed,100,NotStarted,2
-57,Getting Help,100,NotStarted,2
-58,The Robot Pilot,50,NotStarted,2
-59,Time in the Cavern,50,NotStarted,2
-60,Lists of Commands,75,NotStarted,2
-61,Knowledge Check - Large Programs,25,NotStarted,3
-62,The Feud,75,NotStarted,3
-63,Dueling Traditions,100,NotStarted,3
-64,Safer Number Crunching,50,NotStarted,3
-65,Knowledge Check - Methods,25,NotStarted,3
-66,Better Random,100,NotStarted,3
-67,Exepti's Game,100,NotStarted,3
-68,The Sieve,100,NotStarted,3
-69,Knowledge Check - Events,25,NotStarted,3
-70,Charberry Trees,100,NotStarted,3
-71,Knowledge Check - Lambdas,25,NotStarted,3
-72,The Lambda Sieve,50,NotStarted,3
-73,The Long Game,100,NotStarted,3
-74,The Potion Masters of Pattren,150,NotStarted,3
-75,Knowledge Check - Operators,25,NotStarted,3
-76,Navigating Operand City,100,NotStarted,3
-77,Indexing Operand City,75,NotStarted,3
-78,Converting Directions to Offsets,50,NotStarted,3
-79,Knowledge Check - Queries,25,NotStarted,3
-80,The Three Lenses,100,NotStarted,3
-81,The Repeating Stream,150,NotStarted,3
-82,Knowledge Check - Async,25,NotStarted,3
-83,Asynchronous Random Words,150,NotStarted,3
-84,Many Random Words,50,NotStarted,3
-85,Uniter of Adds,75,NotStarted,3
-86,The Robot Factory,100,NotStarted,3
-87,Knowledge Check - Unsafe Code,25,NotStarted,3
-88,Knowledge Check - Other Features,25,NotStarted,3
-89,Colored Console,100,NotStarted,3
-90,The Great Humanizer,100,NotStarted,3
-91,Knowledge Check - Compiling,25,NotStarted,3
-92,Knowledge Check - .NET,25,NotStarted,3
-93,Altar of Publication,100,NotStarted,3
-94,Core Game: Building Character,300,NotStarted,4
-95,Core Game: The True Programmer,100,NotStarted,4
-96,Core Game: Actions and Players,300,NotStarted,4
-97,Core Game: Attacks,200,NotStarted,4
-98,Core Game: Damage and HP,150,NotStarted,4
-99,Core Game: Death,150,NotStarted,4
-100,Core Game: Battle Series,150,NotStarted,4
-101,Core Game: The Uncoded One,100,NotStarted,4
-102,Core Game: The Player Decides,200,NotStarted,4
-103,Expansion: The Game's Status,100,NotStarted,4
-104,Expansion: Items,200,NotStarted,4
-105,Expansion: Gear,300,NotStarted,4
-106,Expansion: Stolen Inventory,200,NotStarted,4
-107,Expansion: Vin Fletcher,200,NotStarted,4
-108,Expansion: Attack Modifiers,200,NotStarted,4
-109,Expansion: Damage Types,200,NotStarted,4
-110,Expansion: Making it Yours,0,NotStarted,4
-111,Expansion: Restoring Balance,150,NotStarted,4
+1,Knowledge Check - Objects,25,NotStarted,2
+2,Simula's Test,100,NotStarted,2
+3,Simula's Soups,100,NotStarted,2
+4,Vin Fletcher's Arrows,100,NotStarted,2
+5,Vin's Trouble,50,NotStarted,2
+6,The Properties of Arrows,100,NotStarted,2
+7,Arrow Factories,100,NotStarted,2
+8,The Point,75,NotStarted,2
+9,The Color,100,NotStarted,2
+10,The Card,100,NotStarted,2
+11,The Locked Door,100,NotStarted,2
+12,The Password Validator,100,NotStarted,2
+13,Rock-Paper-Scissors,150,NotStarted,2
+14,15-Puzzle,150,NotStarted,2
+15,Hangman,150,NotStarted,2
+16,Tic-Tac-Toe,300,NotStarted,2
+17,Packing Inventory,150,NotStarted,2
+18,Labeling Inventory,50,NotStarted,2
+19,The Old Robot,200,NotStarted,2
+20,Robotic Interface,75,NotStarted,2
+21,Room Coordinates,50,NotStarted,2
+22,War Preparations,100,NotStarted,2
+23,Colored Items,100,NotStarted,2
+24,The Fountain of Objects,500,NotStarted,2
+25,"Small, Medium, or Large",100,NotStarted,2
+26,Pits,100,NotStarted,2
+27,Maelstroms,100,NotStarted,2
+28,Amaroks,100,NotStarted,2
+29,Getting Armed,100,NotStarted,2
+30,Getting Help,100,NotStarted,2
+31,The Robot Pilot,50,NotStarted,2
+32,Time in the Cavern,50,NotStarted,2
+33,Lists of Commands,75,NotStarted,2
+1,Knowledge Check - Large Programs,25,NotStarted,3
+2,The Feud,75,NotStarted,3
+3,Dueling Traditions,100,NotStarted,3
+4,Safer Number Crunching,50,NotStarted,3
+5,Knowledge Check - Methods,25,NotStarted,3
+6,Better Random,100,NotStarted,3
+7,Exepti's Game,100,NotStarted,3
+8,The Sieve,100,NotStarted,3
+9,Knowledge Check - Events,25,NotStarted,3
+10,Charberry Trees,100,NotStarted,3
+11,Knowledge Check - Lambdas,25,NotStarted,3
+12,The Lambda Sieve,50,NotStarted,3
+13,The Long Game,100,NotStarted,3
+14,The Potion Masters of Pattren,150,NotStarted,3
+15,Knowledge Check - Operators,25,NotStarted,3
+16,Navigating Operand City,100,NotStarted,3
+17,Indexing Operand City,75,NotStarted,3
+18,Converting Directions to Offsets,50,NotStarted,3
+19,Knowledge Check - Queries,25,NotStarted,3
+20,The Three Lenses,100,NotStarted,3
+21,The Repeating Stream,150,NotStarted,3
+22,Knowledge Check - Async,25,NotStarted,3
+23,Asynchronous Random Words,150,NotStarted,3
+24,Many Random Words,50,NotStarted,3
+25,Uniter of Adds,75,NotStarted,3
+26,The Robot Factory,100,NotStarted,3
+27,Knowledge Check - Unsafe Code,25,NotStarted,3
+28,Knowledge Check - Other Features,25,NotStarted,3
+29,Colored Console,100,NotStarted,3
+30,The Great Humanizer,100,NotStarted,3
+31,Knowledge Check - Compiling,25,NotStarted,3
+32,Knowledge Check - .NET,25,NotStarted,3
+33,Altar of Publication,100,NotStarted,3
+1,Core Game: Building Character,300,NotStarted,4
+2,Core Game: The True Programmer,100,NotStarted,4
+3,Core Game: Actions and Players,300,NotStarted,4
+4,Core Game: Attacks,200,NotStarted,4
+5,Core Game: Damage and HP,150,NotStarted,4
+6,Core Game: Death,150,NotStarted,4
+7,Core Game: Battle Series,150,NotStarted,4
+8,Core Game: The Uncoded One,100,NotStarted,4
+9,Core Game: The Player Decides,200,NotStarted,4
+10,Expansion: The Game's Status,100,NotStarted,4
+11,Expansion: Items,200,NotStarted,4
+12,Expansion: Gear,300,NotStarted,4
+13,Expansion: Stolen Inventory,200,NotStarted,4
+14,Expansion: Vin Fletcher,200,NotStarted,4
+15,Expansion: Attack Modifiers,200,NotStarted,4
+16,Expansion: Damage Types,200,NotStarted,4
+17,Expansion: Making it Yours,0,NotStarted,4
+18,Expansion: Restoring Balance,150,NotStarted,4

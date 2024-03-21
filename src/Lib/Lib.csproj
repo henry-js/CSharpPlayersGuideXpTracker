@@ -11,6 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="$(ProjectDir)challenges\**" CopyToOutputDirectory="PreserveNewest" LinkBase="challenges\"/>
+    <None Include="$(ProjectDir)challenges\**" CopyToOutputDirectory="Always" LinkBase="challenges\"/>
   </ItemGroup>
 </Project>

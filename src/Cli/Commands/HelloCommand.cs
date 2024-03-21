@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using CSharpPlayersGuideXpTracker.Lib.Services;
 using Spectre.Console;
 using Spectre.Console.Cli;
+using XpTracker.Lib;
 
 namespace CSharpPlayersGuideXpTracker.Cli.Commands;
 
@@ -17,6 +18,9 @@ public class HelloCommand(IAnsiConsole ansiConsole, IOptions<NestedSettings> nes
 
         _console.MarkupLine($"In appsettings.json value of NestedSettings:");
         _console.WriteLine(JsonSerializer.Serialize(_nestedSettings, new JsonSerializerOptions { WriteIndented = true }));
+
+        var repository = new TrackerRepository();
+        var challenges = repository.GetChallenges();
 
         return await Task.FromResult(0);
     }

@@ -11,60 +11,64 @@ namespace Lib;
 
 public class Tracker
 {
-    private readonly Dictionary<int, ChallengeRecord> _challenges = [];
+    private readonly Dictionary<ChapterId, Challenge> _challenges = [];
 
     private readonly ITrackerRepository _repo;
 
     public Tracker(ITrackerRepository repository)
     {
         _repo = repository;
-        _challenges = _repo.GetChallenges().ToDictionary(x => x.Id);
-
+        _challenges = _repo.GetChallenges().ToDictionary(c => c.ChapterId);
     }
 
     public int CompletedCount =>
         _challenges.Values.Count(x => x.Status == ChallengeStatus.Completed);
 
     public int TotalXp =>
-        _challenges.Values.Select(c => c.Xp)
-        .Sum();
+        _challenges.Values.Sum(c => c.Xp);
 
     public int CurrentXp =>
         _challenges.Values.Where(c => c.Status == ChallengeStatus.Completed)
-        .Sum(x => x.Xp);
+            .Sum(x => x.Xp);
 
-
-    public List<ChallengeRecord> GetChapter(int chapter = 1)
+    public IEnumerable<Challenge> Challenges => _challenges.Values;
+    public List<Challenge> GetChapter(int chapter = 1)
     {
         if (chapter < 1 || chapter > 4)
             chapter = 1;
-        return _challenges.Values.Where(x => x.Chapter == chapter).ToList();
+        return _challenges.Values.Where(x => x.ChapterId.Chapter == chapter).ToList();
     }
-    public ChallengeRecord Complete(ChallengeRecord challengeRecord)
+    public Challenge Complete(ChapterId pos)
     {
-        _challenges[challengeRecord.Id] = challengeRecord with { Status = ChallengeStatus.Completed };
+        _challenges[pos].Status = ChallengeStatus.Completed; // = challengeRecord with { Status = ChallengeStatus.Completed };
         _repo.SaveChallenges(_challenges.Values);
-        return _challenges[challengeRecord.Id];
+        return _challenges[pos];
     }
 
-    public ChallengeRecord GetCompleted()
+    public Challenge GetCompleted()
     {
         throw new NotImplementedException();
     }
 
-    public ChallengeRecord GetUnCompleted()
+    public Challenge GetUnCompleted()
     {
         throw new NotImplementedException();
     }
+    public IEnumerable<Challenge> GetStarted() => _challenges.Values.Where(c => c.Status == ChallengeStatus.InProgress);
 
-    public ChallengeRecord Start(ChallengeRecord challengeRecord)
+    public Challenge Start(ChapterId challengePos)
     {
-        _challenges[challengeRecord.Id] = challengeRecord with { Status = ChallengeStatus.InProgress };
+        var challenge = _challenges[challengePos];
+        _challenges[challenge.ChapterId].Status = ChallengeStatus.InProgress;
         _repo.SaveChallenges(_challenges.Values);
-        return _challenges[challengeRecord.Id];
+        return _challenges[challenge.ChapterId];
+    }
+
+    public Challenge? GetChallenge(ChapterId challengePos)
+    {
+        if (_challenges.ContainsKey(challengePos))
+            return _challenges[challengePos];
+
+        return null;
     }
 }
-
-
-
-public enum ChallengeStatus { NotStarted, InProgress, Completed }
