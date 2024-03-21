@@ -21,21 +21,21 @@ public class TrackerTests
     }
 
     [Fact]
-    public void CanStartAChallenge()
+    public async Task CanStartAChallengeAsync()
     {
         var challengPos = new ChapterId { Chapter = 2, Id = 3 };
         var challenge = _tracker.GetChallenge(challengPos);
 
         challenge.Should().NotBeNull();
-        challenge = _tracker.Start(challenge!.ChapterId);
+        challenge = await _tracker.StartAsync(challenge!.ChapterId);
         challenge.Status.Should().Be(ChallengeStatus.InProgress);
     }
 
     [Fact]
-    public void CanCompleteAChallenge()
+    public async Task CanCompleteAChallengeAsync()
     {
         var challengePos = new ChapterId { Chapter = 4, Id = 1 };
-        var challenge = _tracker.Complete(challengePos);
+        var challenge = await _tracker.CompleteAsync(challengePos);
 
         challenge.Status.Should().Be(ChallengeStatus.Completed);
     }

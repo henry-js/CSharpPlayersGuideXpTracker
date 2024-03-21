@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Frozen;
 using System.Globalization;
 using System.Reflection;
 using CsvHelper;
@@ -28,12 +26,11 @@ public class TrackerRepository : ITrackerRepository
         return records.ToList();
     }
 
-    public void SaveChallenges(IEnumerable<Challenge> challengeRecords)
+    public async Task SaveChallenges(IEnumerable<Challenge> challenges)
     {
-        var challenges = challengeRecords;
         using var writer = new StreamWriter(_challengeFile);
         using var csv = new CsvWriter(writer, new CsvConfiguration(CultureInfo.InvariantCulture));
-        csv.WriteRecords(challenges);
+        await csv.WriteRecordsAsync(challenges);
     }
 }
 
@@ -41,5 +38,5 @@ public interface ITrackerRepository
 {
     IEnumerable<Challenge> GetChallenges();
 
-    void SaveChallenges(IEnumerable<Challenge> challenges);
+    Task SaveChallenges(IEnumerable<Challenge> challenges);
 }

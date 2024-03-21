@@ -26,20 +26,24 @@ builder.Services.AddCommand<HelloCommand>("hello", cmd =>
     cmd.WithDescription("A command that says hello");
 });
 
-
 // Add another command and its dependent service
 
 builder.Services.AddCommand<OtherCommand>("other");
 builder.Services.AddScoped<ISampleService, SampleService>(s => new SampleService("Other Service"));
 
+builder.Services.AddCommand<CurrentStatusCommand>("status", cmd =>
+{
+    cmd.WithDescription("Print current status");
+});
+
 //
 // The standard call save for the commands will be pre-added & configured
 //
-builder.UseSpectreConsole<HelloCommand>(config =>
+builder.UseSpectreConsole<CurrentStatusCommand>(config =>
 {
     // All commands above are passed to config.AddCommand() by this point
 
-    config.SetApplicationName("hello");
+    config.SetApplicationName("xptracker");
     config.UseBasicExceptionHandler();
 });
 

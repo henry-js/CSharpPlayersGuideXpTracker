@@ -1,10 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Frozen;
-using System.Collections.Immutable;
-using System.Globalization;
-using System.Reflection;
-using CsvHelper;
-using CsvHelper.Configuration;
 using XpTracker.Lib;
 
 namespace Lib;
@@ -38,29 +32,25 @@ public class Tracker
             chapter = 1;
         return _challenges.Values.Where(x => x.ChapterId.Chapter == chapter).ToList();
     }
-    public Challenge Complete(ChapterId pos)
+    public async Task<Challenge> CompleteAsync(ChapterId pos)
     {
         _challenges[pos].Status = ChallengeStatus.Completed; // = challengeRecord with { Status = ChallengeStatus.Completed };
-        _repo.SaveChallenges(_challenges.Values);
+        await _repo.SaveChallenges(_challenges.Values);
         return _challenges[pos];
     }
 
-    public Challenge GetCompleted()
-    {
-        throw new NotImplementedException();
-    }
-
-    public Challenge GetUnCompleted()
-    {
-        throw new NotImplementedException();
-    }
+    public IEnumerable<Challenge> GetCompleted() => _challenges.Values.Where(c => c.Status == ChallengeStatus.Completed);
+    public IEnumerable<Challenge> GetNotStarted() => _challenges.Values.Where(c => c.Status == ChallengeStatus.NotStarted);
     public IEnumerable<Challenge> GetStarted() => _challenges.Values.Where(c => c.Status == ChallengeStatus.InProgress);
 
-    public Challenge Start(ChapterId challengePos)
+    public async Task<Challenge> StartAsync(ChapterId challengePos)
     {
+        var saveTask = _repo.SaveChallenges(_challenges.Values);
         var challenge = _challenges[challengePos];
         _challenges[challenge.ChapterId].Status = ChallengeStatus.InProgress;
-        _repo.SaveChallenges(_challenges.Values);
+
+        await saveTask;
+
         return _challenges[challenge.ChapterId];
     }
 
