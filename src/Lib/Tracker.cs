@@ -25,6 +25,12 @@ public class Tracker
         _challenges.Values.Where(c => c.Status == ChallengeStatus.Completed)
             .Sum(x => x.Xp);
 
+    public int CurrentLevel => CurrentXp switch
+    {
+        < 200 => 1,
+        < 400 => 2,
+        _ => 0
+    };
     public IEnumerable<Challenge> Challenges => _challenges.Values;
     public List<Challenge> GetChapter(int chapter = 1)
     {
@@ -61,4 +67,6 @@ public class Tracker
 
         return null;
     }
+
+
 }

@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using CSharpPlayersGuideXpTracker.Cli.Commands;
-using CSharpPlayersGuideXpTracker.Lib.Services;
 using Spectre.Console.Cli;
 
 var builder = Host.CreateApplicationBuilder(args);
@@ -19,17 +18,6 @@ builder.Logging.ClearProviders();
 // Bind configuration section to object
 builder.Services.AddOptions<NestedSettings>()
     .Bind(builder.Configuration.GetSection(NestedSettings.Key));
-
-// Add a command and optionally configure it.
-builder.Services.AddCommand<HelloCommand>("hello", cmd =>
-{
-    cmd.WithDescription("A command that says hello");
-});
-
-// Add another command and its dependent service
-
-builder.Services.AddCommand<OtherCommand>("other");
-builder.Services.AddScoped<ISampleService, SampleService>(s => new SampleService("Other Service"));
 
 builder.Services.AddCommand<CurrentStatusCommand>("status", cmd =>
 {
