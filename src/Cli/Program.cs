@@ -1,41 +1,50 @@
-﻿using Community.Extensions.Spectre.Cli.Hosting;
-using Microsoft.Extensions.Configuration;
+﻿using System.CommandLine;
+using System.CommandLine.Builder;
+using System.CommandLine.Hosting;
+using System.CommandLine.Parsing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Serilog;
+using Spectre.Console;
 using CSharpPlayersGuideXpTracker.Cli.Commands;
-using Spectre.Console.Cli;
+using CSharpPlayersGuideXpTracker.Cli.Extensions;
 
-var builder = Host.CreateApplicationBuilder(args);
+var loggerConfiguration = new LoggerConfiguration()
+    .MinimumLevel.Debug()
+    // .WriteTo.File("logs/startup_.log",
+    // outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u}] {SourceContext}: {Message:lj}{NewLine}{Exception}",
+    // rollingInterval: RollingInterval.Day
+    // )
+    // .Enrich.WithProperty("Application Name", "<APP NAME>");
+    .WriteTo.Console();
+Log.Logger = loggerConfiguration.CreateBootstrapLogger();
 
-// Only use configuration in appsettings.json
-builder.Configuration.Sources.Clear();
-builder.Configuration.AddJsonFile("appsettings.json", false);
+var rootCommand = new RootCommand("root");
+rootCommand.AddCommand(new StatusCommand());
 
-//Disable logging
-builder.Logging.ClearProviders();
+var cmdLine = new CommandLineBuilder(rootCommand)
+    .UseHost(_ => Host.CreateDefaultBuilder(args), builder =>
+    {
+        builder.ConfigureAppConfiguration(config =>
+        {
+            // config.AddJsonFile("<CUSTOM_JSON_FILE>");
+        })
+            .ConfigureServices((context, services) =>
+            {
+                services.AddSingleton(_ => AnsiConsole.Console);
+            })
+            .UseProjectCommandHandlers()
+            .UseSerilog((context, services, configuration) =>
+                configuration.ReadFrom.Configuration(context.Configuration));
+    })
+    .UseDefaults()
+    // .UseExceptionHandler((ex, context) =>
+    // {
+    //     AnsiConsole.WriteException(ex, ExceptionFormats.Default);
+    //     Log.Fatal(ex, "Application terminated unexpectedly");
+    // })
+    .Build();
 
-// Bind configuration section to object
-builder.Services.AddOptions<NestedSettings>()
-    .Bind(builder.Configuration.GetSection(NestedSettings.Key));
+int result = await cmdLine.InvokeAsync(args);
 
-builder.Services.AddCommand<CurrentStatusCommand>("status", cmd =>
-{
-    cmd.WithDescription("Print current status");
-});
-
-//
-// The standard call save for the commands will be pre-added & configured
-//
-builder.UseSpectreConsole<CurrentStatusCommand>(config =>
-{
-    // All commands above are passed to config.AddCommand() by this point
-
-    config.SetApplicationName("xptracker");
-    config.UseBasicExceptionHandler();
-});
-
-var app = builder.Build();
-await app.RunAsync();
-
-Console.ReadLine();
+return result;

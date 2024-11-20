@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cli.Tests", "tests\Cli.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Tests", "tests\Lib.Tests\Lib.Tests.csproj", "{984840C2-C9A7-49BB-8F5A-4DF7E3063CB0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{5473A047-A780-49F3-9BAF-F7FA17894F43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", ".nuke\_build.csproj", "{3DEE3C0F-5F03-4EDD-94E9-3332DC7F853B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +26,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DEE3C0F-5F03-4EDD-94E9-3332DC7F853B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DEE3C0F-5F03-4EDD-94E9-3332DC7F853B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5473A047-A780-49F3-9BAF-F7FA17894F43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5473A047-A780-49F3-9BAF-F7FA17894F43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50577C79-8502-49AB-8517-F335D2F38E8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

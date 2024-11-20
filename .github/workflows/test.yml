@@ -9,32 +9,29 @@
 #
 #     - To trigger manual generation invoke:
 #
-#         nuke --generate-configuration GitHubActions_compile-code --host GitHubActions
+#         nuke --generate-configuration GitHubActions_test --host GitHubActions
 #
 # </auto-generated>
 # ------------------------------------------------------------------------------
 
-name: compile-code
+name: test
 
-on:
-  push:
-    branches:
-      - '**'
+on: [pull_request]
 
 jobs:
-  ubuntu-latest:
-    name: ubuntu-latest
-    runs-on: ubuntu-latest
+  windows-latest:
+    name: windows-latest
+    runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: 'Cache: .nuke/temp, ~/.nuget/packages'
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
-      - name: 'Run: Compile'
-        run: ./build.cmd Compile
+      - name: 'Run: Test'
+        run: ./build.cmd Test
