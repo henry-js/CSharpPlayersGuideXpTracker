@@ -24,6 +24,7 @@ Log.Logger = loggerConfiguration.CreateBootstrapLogger();
 
 var rootCommand = new RootCommand("root");
 rootCommand.AddCommand(new StatusCommand());
+rootCommand.AddCommand(new TrackCommand());
 
 var cmdLine = new CommandLineBuilder(rootCommand)
     .UseHost(_ => Host.CreateDefaultBuilder(args), builder =>

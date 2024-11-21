@@ -23,12 +23,11 @@ internal sealed class StatusCommand : Command
         public async Task<int> InvokeAsync(InvocationContext context)
         {
             // Create the layout
-            var challenges = repository.GetChallenges();
+            var challenges = await repository.GetChallenges();
             foreach (var item in challenges)
             {
                 Console.WriteLine(JsonSerializer.Serialize(item));
             }
-            await repository.SaveChallenges(challenges);
             Console.ReadLine();
             return 0;
         }

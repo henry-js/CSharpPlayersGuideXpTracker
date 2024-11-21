@@ -47,9 +47,9 @@ public class LiteTrackerRepository : ITrackerRepository
     private readonly LiteRepository repo = default!;
     private readonly LiteDatabase db;
 
-    public IEnumerable<Challenge> GetChallenges()
+    public async Task<IEnumerable<Challenge>> GetChallenges()
     {
-        return db.GetCollection<Challenge>().FindAll().ToList();
+        return await Task.Run(() => db.GetCollection<Challenge>().FindAll().ToList());
     }
 
     public async Task SaveChallenges(IEnumerable<Challenge> challenges)
@@ -63,7 +63,7 @@ public class LiteTrackerRepository : ITrackerRepository
 
 public interface ITrackerRepository
 {
-    IEnumerable<Challenge> GetChallenges();
+    Task<IEnumerable<Challenge>> GetChallenges();
 
     Task SaveChallenges(IEnumerable<Challenge> challenges);
 }

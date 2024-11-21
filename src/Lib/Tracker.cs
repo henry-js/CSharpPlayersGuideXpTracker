@@ -12,7 +12,7 @@ public class Tracker
     public Tracker(ITrackerRepository repository)
     {
         _repo = repository;
-        _challenges = _repo.GetChallenges().ToDictionary(c => c.ChapterId);
+        _challenges = _repo.GetChallenges().Result.ToDictionary(c => c.ChapterId);
     }
 
     public int CompletedCount =>
