@@ -16,13 +16,13 @@ public class Tracker
     }
 
     public int CompletedCount =>
-        _challenges.Values.Count(x => x.Status == ChallengeStatus.Completed);
+        _challenges.Values.Count(x => x.Status == ChallengeStatus.Done);
 
     public int TotalXp =>
         _challenges.Values.Sum(c => c.Xp);
 
     public int CurrentXp =>
-        _challenges.Values.Where(c => c.Status == ChallengeStatus.Completed)
+        _challenges.Values.Where(c => c.Status == ChallengeStatus.Done)
             .Sum(x => x.Xp);
 
     public int CurrentLevel => CurrentXp switch
@@ -40,20 +40,20 @@ public class Tracker
     }
     public async Task<Challenge> CompleteAsync(ChapterId pos)
     {
-        _challenges[pos].Status = ChallengeStatus.Completed; // = challengeRecord with { Status = ChallengeStatus.Completed };
+        _challenges[pos].Status = ChallengeStatus.Done; // = challengeRecord with { Status = ChallengeStatus.Done };
         await _repo.SaveChallenges(_challenges.Values);
         return _challenges[pos];
     }
 
-    public IEnumerable<Challenge> GetCompleted() => _challenges.Values.Where(c => c.Status == ChallengeStatus.Completed);
-    public IEnumerable<Challenge> GetNotStarted() => _challenges.Values.Where(c => c.Status == ChallengeStatus.NotStarted);
-    public IEnumerable<Challenge> GetStarted() => _challenges.Values.Where(c => c.Status == ChallengeStatus.InProgress);
+    public IEnumerable<Challenge> GetCompleted() => _challenges.Values.Where(c => c.Status == ChallengeStatus.Done);
+    public IEnumerable<Challenge> GetNotStarted() => _challenges.Values.Where(c => c.Status == ChallengeStatus.Pending);
+    public IEnumerable<Challenge> GetStarted() => _challenges.Values.Where(c => c.Status == ChallengeStatus.Started);
 
     public async Task<Challenge> StartAsync(ChapterId challengePos)
     {
         var saveTask = _repo.SaveChallenges(_challenges.Values);
         var challenge = _challenges[challengePos];
-        _challenges[challenge.ChapterId].Status = ChallengeStatus.InProgress;
+        _challenges[challenge.ChapterId].Status = ChallengeStatus.Started;
 
         await saveTask;
 

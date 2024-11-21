@@ -8,6 +8,9 @@ using Serilog;
 using Spectre.Console;
 using CSharpPlayersGuideXpTracker.Cli.Commands;
 using CSharpPlayersGuideXpTracker.Cli.Extensions;
+using XpTracker.Lib;
+using Lib;
+using LiteDB;
 
 var loggerConfiguration = new LoggerConfiguration()
     .MinimumLevel.Debug()
@@ -32,6 +35,15 @@ var cmdLine = new CommandLineBuilder(rootCommand)
             .ConfigureServices((context, services) =>
             {
                 services.AddSingleton(_ => AnsiConsole.Console);
+                // services.AddSingleton<ITrackerRepository, TrackerRepository>();
+                services.AddSingleton<LiteDatabase>((s) =>
+                {
+                    var dll = new FileInfo(typeof(Program).Assembly.Location);
+                    var fileName = Path.Combine(dll.DirectoryName, "challenges.db");
+                    var repo = new LiteDatabase(@$"Filename={fileName};Connection=direct");
+                    return repo;
+                });
+                services.AddSingleton<ITrackerRepository, LiteTrackerRepository>();
             })
             .UseProjectCommandHandlers()
             .UseSerilog((context, services, configuration) =>

@@ -1,16 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="30.0.1" />
+    <PackageReference Include="LiteDB" Version="5.0.21" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="$(ProjectDir)challenges\**" CopyToOutputDirectory="Always" LinkBase="challenges\"/>
+    <None Include="$(ProjectDir)challenges\**" CopyToOutputDirectory="Always" LinkBase="challenges\" />
   </ItemGroup>
 </Project>
