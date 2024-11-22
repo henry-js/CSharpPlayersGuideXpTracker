@@ -1,4 +1,4 @@
-using Cli.Commands;
+using Cli.Menu;
 using Microsoft.Extensions.Logging;
 using Spectre.Console;
 using System.CommandLine;
@@ -25,35 +25,42 @@ internal sealed class TrackCommand : Command
 
         public async Task<int> InvokeAsync(InvocationContext context)
         {
-            var menu = new MenuNavigator(new MenuItem("Root", MenuItemType.Root).AddChildren(
+            var menu = new MenuNavigator(new RootMenuItem("Root").AddChildren(
                 [
-                    new MenuItem("1. Sample Item", MenuItemType.SubMenu).AddChildren(
+                    new SubMenuItem("1. Sample Item",
                         [
-                            new MenuItem("a. SubMenu Item", MenuItemType.SubMenu),
-                            new MenuItem("b. SubMenu Item", MenuItemType.SubMenu),
-                            new MenuItem("c. SubMenu Item", MenuItemType.SubMenu),
+                            new SubMenuItem("a. SubMenu Item", []),
+                            new SubMenuItem("b. SubMenu Item", []),
+                            new SubMenuItem("c. SubMenu Item", []),
                         ]
                     ),
-                    new MenuItem("2. Sample Item", MenuItemType.Action),
-                    new MenuItem("3. Sample Item", MenuItemType.SubMenu),
-                    new MenuItem("4. Sample Item", MenuItemType.SubMenu),
+                    new SubMenuItem("2. Sample Item", []),
+                    new SubMenuItem("3. Sample Item", []),
+                    new SubMenuItem("4. Sample Item", []),
                 ]
             ));
-
-            while (true)
+            bool exit = false;
+            while (!exit)
             {
-                DisplayCurrentMenu(menu);
                 switch (menu.Current.Type)
                 {
+                    case MenuItemType.Root:
+                    case MenuItemType.SubMenu:
+                        menu.Display(console);
+                        continue;
+                    case MenuItemType.Back:
+                        if (menu.CanMovePrevious) menu.MovePrevious();
+                        continue;
+                    case MenuItemType.Exit:
+                        exit = true;
+                        continue;
+                    case MenuItemType.Action:
+                        console.MarkupLine("[blue]ACTION HIT[/]");
+                        continue;
                 }
             }
-            var selected = menu.Display(console);
-            return 0;
-        }
 
-        private void DisplayCurrentMenu(MenuNavigator menu)
-        {
-            throw new NotImplementedException();
+            return await Task.FromResult(0);
         }
     }
 }
