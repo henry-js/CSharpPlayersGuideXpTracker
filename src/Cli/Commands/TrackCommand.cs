@@ -1,4 +1,7 @@
 using Cli.Menu;
+using Lib;
+using LiteDB;
+using LiteDB;
 using Microsoft.Extensions.Logging;
 using Spectre.Console;
 using System.CommandLine;
@@ -18,26 +21,17 @@ internal sealed class TrackCommand : Command
         var interactive = new Option<bool>(["-i", "--interactive"]);
     }
 
-    new public class Handler(IAnsiConsole console, ILogger<TrackCommand> logger) : ICommandHandler
+    new public class Handler(IAnsiConsole console, LiteRepository repo, ILogger<TrackCommand> logger) : ICommandHandler
     {
         public bool Interactive { get; set; }
         public int Invoke(InvocationContext context) => InvokeAsync(context).Result;
 
         public async Task<int> InvokeAsync(InvocationContext context)
         {
-            var menu = new MenuNavigator(new RootMenuItem("Root").AddChildren(
-                [
-                    new SubMenuItem("1. Sample Item",
-                        [
-                            new SubMenuItem("a. SubMenu Item", []),
-                            new SubMenuItem("b. SubMenu Item", []),
-                            new SubMenuItem("c. SubMenu Item", []),
-                        ]
-                    ),
-                    new SubMenuItem("2. Sample Item", []),
-                    new SubMenuItem("3. Sample Item", []),
-                    new SubMenuItem("4. Sample Item", []),
-                ]
+            var challenges = repo.Query<Challenge>().ToList().GroupBy(c => c.ChapterId.Chapter);
+            var menu = new MenuNavigator(new RootMenuItem("Chapters").AddChildren(
+                challenges.Select(chapter =>
+                    new ChallengeSubMenuItem($"Chapter {chapter.Key}", chapter.Select(c => c)))
             ));
             bool exit = false;
             while (!exit)
@@ -55,7 +49,7 @@ internal sealed class TrackCommand : Command
                         exit = true;
                         continue;
                     case MenuItemType.Action:
-                        console.MarkupLine("[blue]ACTION HIT[/]");
+                        menu.Current.Action?.Invoke();
                         continue;
                 }
             }
@@ -63,4 +57,17 @@ internal sealed class TrackCommand : Command
             return await Task.FromResult(0);
         }
     }
+}
+
+internal class ChallengeMenuItem : ActionMenuItem
+{
+    public ChallengeMenuItem(Challenge challenge) : base(challenge.ChapterId.Number, challenge.Name)
+    {
+        Action = () =>
+        {
+            string statusColor = challenge.Status == ChallengeStatus.Pending ? "red" : challenge.Status == ChallengeStatus.Started ? "yellow" : "red";
+            AnsiConsole.MarkupLineInterpolated($"[purple]Challenge: {challenge.Name}[/], Worth: [green]{challenge.Xp}xp[/], Status: [{statusColor}]{challenge.Status}[/]");
+        };
+    }
+
 }

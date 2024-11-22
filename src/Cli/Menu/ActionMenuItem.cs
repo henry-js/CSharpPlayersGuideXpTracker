@@ -11,7 +11,7 @@ public abstract class ActionMenuItem : IMenuItem
     public string Title { get; }
     public bool HasChildren { get; } = false;
     public List<IMenuItem> Children { get; set; } = [];
-    public Action? Action { get; }
-    public SelectionPrompt<IMenuItem>? Prompt { get; }
-    public virtual MenuItemType Type { get; }
+    public Action? Action { get; protected set; }
+    public IPrompt<IMenuItem>? Prompt { get; }
+    public virtual MenuItemType Type { get; } = MenuItemType.Action;
 }

@@ -16,15 +16,18 @@ public class RootMenuItem : IMenuItem
     public bool HasChildren => Children.Count != 0;
     public List<IMenuItem> Children { get; set; } = [];
     public Action? Action { get; }
-    public SelectionPrompt<IMenuItem> Prompt { get; }
+    public IPrompt<IMenuItem> Prompt { get; private set; }
     public MenuItemType Type { get; set; }
 
     public RootMenuItem AddChildren(IEnumerable<IMenuItem> children)
     {
         Children.AddRange(children);
-        Prompt.AddChoices(Children);
+        var prompt = new SelectionPrompt<IMenuItem>()
+        .AddChoices(Children);
         int index = Children.Count;
-        Prompt.AddChoice(new ExitMenuItem(index++));
+        prompt.AddChoice(new ExitMenuItem(index++));
+
+        Prompt = prompt;
         return this;
     }
 }

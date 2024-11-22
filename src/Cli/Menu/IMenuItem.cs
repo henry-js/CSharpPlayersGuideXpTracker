@@ -8,6 +8,6 @@ public interface IMenuItem
     bool HasChildren { get; }
     List<IMenuItem> Children { get; set; }
     Action? Action { get; }
-    SelectionPrompt<IMenuItem>? Prompt { get; }
+    IPrompt<IMenuItem>? Prompt { get; }
     MenuItemType Type { get; }
 }

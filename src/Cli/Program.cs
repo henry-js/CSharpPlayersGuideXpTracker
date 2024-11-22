@@ -31,19 +31,18 @@ var cmdLine = new CommandLineBuilder(rootCommand)
     {
         builder.ConfigureAppConfiguration(config =>
         {
-            // config.AddJsonFile("<CUSTOM_JSON_FILE>");
         })
             .ConfigureServices((context, services) =>
             {
                 services.AddSingleton(_ => AnsiConsole.Console);
                 // services.AddSingleton<ITrackerRepository, TrackerRepository>();
-                services.AddSingleton<LiteDatabase>((s) =>
+                services.AddSingleton((s) =>
                 {
                     var dll = new FileInfo(typeof(Program).Assembly.Location);
                     var fileName = Path.Combine(dll.DirectoryName, "challenges.db");
-                    var repo = new LiteDatabase(@$"Filename={fileName};Connection=direct");
-                    return repo;
+                    return new LiteDatabase(@$"Filename={fileName};Connection=direct");
                 });
+                services.AddSingleton((sp) => new LiteRepository(sp.GetRequiredService<LiteDatabase>()));
                 services.AddSingleton<ITrackerRepository, LiteTrackerRepository>();
             })
             .UseProjectCommandHandlers()
@@ -51,11 +50,6 @@ var cmdLine = new CommandLineBuilder(rootCommand)
                 configuration.ReadFrom.Configuration(context.Configuration));
     })
     .UseDefaults()
-    // .UseExceptionHandler((ex, context) =>
-    // {
-    //     AnsiConsole.WriteException(ex, ExceptionFormats.Default);
-    //     Log.Fatal(ex, "Application terminated unexpectedly");
-    // })
     .Build();
 
 int result = await cmdLine.InvokeAsync(args);
